@@ -3,6 +3,7 @@ from markdown import markdown
 from pathlib import Path
 import minify_html
 from datetime import date, datetime
+from html import escape
 
 
 def parse_date(value) -> date | None:
@@ -46,12 +47,12 @@ class Page:
     def __init__(self, url, template):
         file_path = Path(url)
 
-        self.url_path = file_path.name[:-3]
+        self.url_path = file_path.stem
         self.file_meta = file_path.stat()
         self.post = frontmatter.load(url)
 
         self.created = resolve_date(self.post.get("created"), self.file_meta.st_ctime)
-        self.updated = resolve_date(self.post.get("updeted"), self.file_meta.st_mtime)
+        self.updated = resolve_date(self.post.get("updated"), self.file_meta.st_mtime)
 
         if self.post.get("author") is None:
             self.post["author"] = "Электро"
@@ -69,9 +70,9 @@ class Page:
 
         self.page = (
             template.replace("{{PAGE}}", str(self.html))
-            .replace("{{NAME}}", self.post["title"])
-            .replace("{{META}}", self.meta)
-            .replace("{{DESC}}", self.description)
+            .replace("{{NAME}}", escape(str(self.post["title"])))
+            .replace("{{META}}", escape(self.meta))
+            .replace("{{DESC}}", escape(str(self.description)))
         )
 
         self.min_page = minify_html.minify(self.page, minify_css=True, minify_js=True)
@@ -95,6 +96,7 @@ pages = sorted(
         if p.is_file()
     ],
     key=lambda b: (b.created is None, b.created),
+    reverse=True,
 )
 
 for page in pages:
