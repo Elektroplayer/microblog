@@ -1,0 +1,7 @@
+:80
+
+root * /srv
+
+encode gzip zstd
+
+file_server
