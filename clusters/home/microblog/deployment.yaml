@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microblog
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microblog
+  template:
+    metadata:
+      labels:
+        app: microblog
+    spec:
+      nodeName: 6134385-ce51025
+      containers:
+        - name: microblog
+          image: ghcr.io/elektroplayer/microblog:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+
+            limits:
+              cpu: 100m
+              memory: 64Mi
