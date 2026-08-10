@@ -2,8 +2,20 @@ import frontmatter
 from markdown import markdown
 from pathlib import Path
 import minify_html
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from html import escape
+from feedgen.feed import FeedGenerator
+
+
+fg = FeedGenerator()
+fg.id("https://electr0.net")
+fg.title("electr0.net микробложик")
+fg.author({"name": "Electro", "email": "me@electr0.net"})
+fg.link(href="https://electr0.net", rel="alternate")
+# fg.logo('http://ex.com/logo.jpg')
+fg.subtitle("О... а о чём?")
+fg.link(href="https://electr0.net/rss.rss", rel="self")
+fg.language("ru")
 
 
 def parse_date(value) -> date | None:
@@ -103,8 +115,34 @@ for page in pages:
     touch_with_content(f"./dist/{page.url_path}/index.html", page.min_page)
     nav += page.nav
 
+    entry = fg.add_entry()
+
+    entry.id("https://electr0.net/" + page.url_path)
+    entry.title(page.post["title"])
+    entry.content(src="https://electr0.net/" + page.url_path, type="text/html")
+    entry.author(
+        {
+            "name": page.post["author"],
+        }
+    )
+    entry.link(href="https://electr0.net/" + page.url_path)
+    # entry.description('Краткое описание статьи')
+
+    if page.created is not None:
+        entry.published(
+            datetime.combine(page.created, datetime.min.time(), tzinfo=timezone.utc)
+        )
+
+    if page.updated is not None:
+        entry.updated(
+            datetime.combine(page.updated, datetime.min.time(), tzinfo=timezone.utc)
+        )
+
 # создание index.html
 index = index_template.replace("{{PAGES_NAV}}", nav)
 touch_with_content(
     "./dist/index.html", minify_html.minify(index, minify_css=True, minify_js=True)
 )
+
+# создаём RSS
+fg.rss_file("dist/rss.rss")
