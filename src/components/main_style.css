@@ -103,14 +103,6 @@ small {
   color: var(--muted);
 }
 
-nav {
-  margin: 2rem 0;
-}
-
-nav a {
-  margin-right: 1rem;
-}
-
 footer {
   margin-top: 3rem;
   color: var(--muted);

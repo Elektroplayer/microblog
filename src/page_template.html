@@ -1,23 +1,20 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{NAME}}</title>
-    <style>
-      {{STYLE}}
-    </style>
+    <title>{{TITLE}}</title>
+    {{header.html}} {{main_style.css}} {{nav.css}}
   </head>
   <body>
     <header>
-      <h1>{{NAME}}</h1>
+      {{nav.html}}
+      <h1>{{TITLE}}</h1>
       <div><blockquote>{{DESC}}</blockquote></div>
       <div class="meta">{{META}}</div>
-      <a href="../"> На главную</a>
+      <a href="/"> На главную</a>
     </header>
-    {{PAGE}}
+    {{CONTENT}}
     <footer>
-      <a href="../"> На главную</a>
+      <a href="/"> На главную</a>
     </footer>
   </body>
 </html>
