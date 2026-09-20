@@ -2,19 +2,19 @@
 <html lang="ru">
   <head>
     <title>{{TITLE}}</title>
-    {{header.html}} {{main_style.css}} {{nav.css}}
+    {{header.html}} {{main_style.css}} {{nav.css}} {{footer.css}}
   </head>
   <body>
     <header>
       {{nav.html}}
       <h1>{{TITLE}}</h1>
-      <div><blockquote>{{DESC}}</blockquote></div>
-      <div class="meta">{{META}}</div>
-      <a href="/"> На главную</a>
+      <div class="description">{{DESC}}</div>
     </header>
     {{CONTENT}}
     <footer>
       <a href="/"> На главную</a>
+      <span class="spacer"></span>
+      <div class="meta">{{META}}</div>
     </footer>
   </body>
 </html>

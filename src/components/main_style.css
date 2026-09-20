@@ -110,3 +110,11 @@ footer {
   padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
+
+.description {
+  color: var(--muted);
+  /* border-left: 2px solid var(--border); */
+  padding-left: 1rem;
+  margin: -0.5rem 0 2rem;
+  max-width: 70ch;
+}

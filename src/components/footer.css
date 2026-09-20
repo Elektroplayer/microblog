@@ -1,0 +1,11 @@
+footer {
+  display: flex;
+}
+
+footer .spacer {
+  flex: 1;
+}
+
+footer a {
+  margin: 0;
+}
