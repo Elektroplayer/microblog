@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <title>Вход</title>
+        {{component.header.html}} {{component.base.css}} {{component.nav.css}}
+        {{component.auth.css}}
+    </head>
+    <body>
+        {{component.nav.html}}
+
+        <main class="auth">
+            <h1>Вход</h1>
+
+            <p id="success" class="success" hidden></p>
+
+            <form id="login-form">
+                <label>
+                    Имя пользователя *
+                    <input
+                        type="text"
+                        name="username"
+                        pattern="[a-z0-9_\-]+"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="32"
+                        title="Только строчные латинские буквы, цифры, _ и -"
+                        required
+                    />
+                </label>
+
+                <label>
+                    Пароль *
+                    <input
+                        type="password"
+                        name="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    />
+                </label>
+
+                <span id="error" class="error" hidden></span>
+                <button type="submit">{{component.login.svg}} Войти</button>
+            </form>
+
+            <p>
+                Нет аккаунта?
+                <a href="/register">Зарегистрироваться</a>
+            </p>
+        </main>
+        <script src="/login/script.js"></script>
+    </body>
+</html>

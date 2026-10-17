@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <title>Регистрация</title>
+        {{component.header.html}} {{component.base.css}} {{component.nav.css}}
+        {{component.auth.css}}
+    </head>
+    <body>
+        {{component.nav.html}}
+
+        <main class="auth">
+            <h1>Регистрация</h1>
+
+            <form id="register-form">
+                <label>
+                    Логин *
+                    <input
+                        type="text"
+                        name="username"
+                        pattern="[a-z0-9_\-]+"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="32"
+                        title="Только строчные латинские буквы, цифры, _ и -"
+                        required
+                    />
+                </label>
+
+                <label>
+                    Отображаемое имя
+                    <input
+                        type="text"
+                        name="displayName"
+                        autocomplete="nickname"
+                        maxlength="80"
+                    />
+                </label>
+
+                <label>
+                    Пароль *
+                    <input
+                        type="password"
+                        name="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    />
+                </label>
+
+                <label>
+                    Подтвердите пароль *
+                    <input
+                        type="password"
+                        name="passwordConfirm"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    />
+                </label>
+
+                <span id="error" class="error" hidden></span>
+                <button type="submit">
+                    {{component.userplus.svg}} Зарегистрироваться
+                </button>
+            </form>
+
+            <span>
+                Уже есть аккаунт?
+                <a href="/login/">Войти</a>
+            </span>
+        </main>
+        <script src="/register/script.js"></script>
+    </body>
+</html>

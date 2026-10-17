@@ -1,0 +1,116 @@
+:root {
+    --bg: #111;
+    --fg: #ddd;
+    --muted: #888;
+    --link: #8cf;
+    --border: #444;
+    --max: 880px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 2rem 1.2rem;
+    background: var(--bg);
+    color: var(--fg);
+
+    font:
+        16px/1.7 ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Consolas,
+        monospace;
+
+    max-width: var(--max);
+    margin-inline: auto;
+
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: none;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+input {
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 9px;
+
+    font: inherit;
+    line-height: 1.4;
+    color: var(--fg);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    transition:
+        border-color 150ms ease,
+        background-color 150ms ease;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 10px 14px;
+
+    font: inherit;
+    line-height: 1.4;
+    color: var(--fg);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1a1a1a;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+
+/* Иконка */
+button svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Только иконка, без текста */
+button.icon-only {
+    width: 44px;
+    min-width: 44px;
+    padding: 9px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <title>{{data.title}}</title>
+        {{component.header.html}} {{component.base.css}} {{component.post.css}}
+        {{component.nav.css}}
+    </head>
+    <body>
+        <header>
+            {{component.nav.html}}
+            <h1>{{data.title}}</h1>
+            <div class="description">{{data.description}}</div>
+        </header>
+        {{data.content}}
+        <footer>
+            <a href="/"> На главную</a>
+            <span class="spacer"></span>
+            <div class="meta">{{data.meta}}</div>
+        </footer>
+    </body>
+</html>

@@ -1,21 +1,35 @@
 # ---------- Build ----------
-FROM python:3.14-slim AS builder
+FROM node:22-bookworm-slim AS builder
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN corepack enable && pnpm install --frozen-lockfile
 
-COPY . .
+COPY tsconfig.json ./
+COPY src ./src
+COPY html ./html
 
-RUN python build.py
+RUN pnpm build
 
 
 # ---------- Runtime ----------
-FROM caddy:2-alpine
+FROM node:22-bookworm-slim AS runtime
 
-COPY Caddyfile /etc/caddy/Caddyfile
-COPY --from=builder /app/dist /srv
+ENV NODE_ENV=production
 
-EXPOSE 80
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+RUN corepack enable && pnpm install --prod --frozen-lockfile \
+    && corepack disable \
+    && npm cache clean --force
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/html ./html
+
+EXPOSE 3000
+
+CMD ["node", "dist/index.js"]

@@ -1,4 +1,0 @@
-python-frontmatter
-Markdown
-minify_html
-feedgen

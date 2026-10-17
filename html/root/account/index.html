@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <title>Аккаунт</title>
+        {{component.header.html}} {{component.base.css}} {{component.nav.css}}
+        {{component.account.css}}
+    </head>
+    <body>
+        <span id="icon-x" hidden>{{component.x.svg}}</span>
+        {{component.nav.html}}
+        <main class="account-page">
+            <header class="account-header">
+                <h1>Аккаунт</h1>
+                <p>Информация о твоём аккаунте.</p>
+            </header>
+
+            <section class="account-info">
+                <div class="account-field" id="username" data-field="username">
+                    <span class="field-label">Имя пользователя</span>
+                    <span class="field-value">{{context.username}}</span>
+                    <button type="button" class="icon-only edit-button">
+                        {{component.pencil.svg}}
+                    </button>
+                    <span class="field-null" hidden></span>
+                    <input
+                        class="edit-input"
+                        type="text"
+                        pattern="[a-z0-9_\-]+"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="32"
+                        title="Только строчные латинские буквы, цифры, _ и -"
+                        placeholder="Новое имя пользователя"
+                        required
+                        hidden
+                    />
+                    <button type="button" class="icon-only save-button" hidden>
+                        {{component.check.svg}}
+                    </button>
+                </div>
+
+                <div
+                    class="account-field"
+                    id="displayname"
+                    data-field="displayName"
+                >
+                    <span class="field-label">Отображаемое имя</span>
+                    <span class="field-value">{{context.displayName}}</span>
+                    <button type="button" class="icon-only edit-button">
+                        {{component.pencil.svg}}
+                    </button>
+                    <span class="field-null" hidden></span>
+                    <input
+                        class="edit-input"
+                        type="text"
+                        name="displayName"
+                        autocomplete="nickname"
+                        maxlength="80"
+                        placeholder="Новый никнейм"
+                        required
+                        hidden
+                    />
+                    <button type="button" class="icon-only save-button" hidden>
+                        {{component.check.svg}}
+                    </button>
+                </div>
+
+                <div class="account-field">
+                    <span class="field-label">Дата регистрации</span>
+                    <span class="field-value">{{context.createdAt}}</span>
+                </div>
+
+                <div class="account-field" id="password" data-field="password">
+                    <span class="field-label">Пароль</span>
+                    <span class="field-value">*****</span>
+                    <button type="button" class="icon-only edit-button">
+                        {{component.pencil.svg}}
+                    </button>
+
+                    <span class="field-null" hidden></span>
+                    <input
+                        class="edit-input"
+                        placeholder="Текущий пароль"
+                        type="password"
+                        name="oldPassword"
+                        minlength="8"
+                        autocomplete="current-password"
+                        required
+                        hidden
+                    />
+                    <span class="field-null" hidden></span>
+
+                    <span class="field-null" hidden></span>
+                    <input
+                        class="edit-input"
+                        placeholder="Новый пароль"
+                        type="password"
+                        name="newPassword"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                        hidden
+                    />
+                    <span class="field-null" hidden></span>
+
+                    <span class="field-null" hidden></span>
+                    <input
+                        class="edit-input"
+                        placeholder="Повтори пароль"
+                        type="password"
+                        name="passwordConfirm"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                        hidden
+                    />
+                    <button type="button" class="icon-only save-button" hidden>
+                        {{component.check.svg}}
+                    </button>
+                </div>
+            </section>
+
+            <section class="account-actions">
+                <button id="logout" type="button">
+                    {{component.logout.svg}} Выйти из аккаунта
+                </button>
+            </section>
+        </main>
+        <script src="/account/script.js" defer></script>
+    </body>
+</html>

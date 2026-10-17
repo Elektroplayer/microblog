@@ -1,0 +1,63 @@
+.account-header {
+    margin-bottom: 32px;
+}
+
+.account-header h1 {
+    margin: 12px 0 8px;
+}
+
+.account-header p {
+    margin: 0;
+    color: var(--muted-color, #888);
+    line-height: 1.6;
+}
+
+.account-info {
+    border-top: 1px solid var(--border-color, #333);
+}
+
+.account-field {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) 1.3fr 44px;
+    align-items: center;
+    min-height: 81px;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-color, #333);
+}
+
+.field-label {
+    color: var(--muted-color, #888);
+}
+
+.field-value {
+    overflow-wrap: anywhere;
+    text-align: right;
+}
+
+.account-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+}
+
+.account-actions button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (max-width: 420px) {
+    .account-page {
+        margin-top: 36px;
+    }
+
+    .account-field {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .field-value {
+        text-align: left;
+    }
+}
