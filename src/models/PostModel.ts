@@ -14,7 +14,7 @@ export default class PostModel {
     static async postList(limit: number = 10, offset: number = 0) {
         let result = await db.query(
             `
-        SELECT slug, title, created_at as createdAt
+        SELECT slug, title, created_at as "createdAt"
         FROM posts
         WHERE is_hidden = false
         ORDER BY created_at DESC
