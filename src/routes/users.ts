@@ -22,7 +22,6 @@ const router = Router();
 
 // POST /users/reg
 router.post('/reg', async (req, res) => {
-    console.log(req.body);
     let data = createUserSchema.parse(req.body);
     let user = await UserModel.create(
         data.username,
